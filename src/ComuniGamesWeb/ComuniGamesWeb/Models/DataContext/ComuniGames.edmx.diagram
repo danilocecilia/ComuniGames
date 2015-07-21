@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b44b279b3ddc4b6b8e059f986f35bb35" Name="Diagram1">
+        <EntityTypeShape EntityType="ComuniGamesModel.Cidade" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="ComuniGamesModel.Endereco" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="ComuniGamesModel.Estado" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="ComuniGamesModel.UserProfile" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="ComuniGamesModel.Usuario" Width="1.5" PointX="7.5" PointY="1.875" />
+        <AssociationConnector Association="ComuniGamesModel.fk_cod_estado_cidade" />
+        <AssociationConnector Association="ComuniGamesModel.FK_Endereco_Cidade" />
+        <AssociationConnector Association="ComuniGamesModel.FK_Usuario_Endereco" />
+        <AssociationConnector Association="ComuniGamesModel.FK_Usuario_UserProfile" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

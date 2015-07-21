@@ -1,0 +1,47 @@
+﻿@model ComuniGamesWeb.ViewModels.AccountViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    if (Request.IsAuthenticated)
+    {
+    
+    <div class="title-caption-large">
+        <h3>Configurações</h3>
+    </div>
+    <div>
+        <div class="editor-label">
+            @Html.Partial("FileUpload")
+            @Html.HiddenFor(w => w.Users.Avatar)
+        </div>
+        <div>Nome</div>
+        <div>@Html.TextBoxFor(w => w.Users.Name)</div>
+        <div><span>Sobrenome</span></div>
+        <div>@Html.TextBoxFor(w => w.Users.Lastname)</div>
+        <div><span>CPF</span></div>
+        <div>@Html.TextBoxFor(w => w.Users.CPF)</div>
+        <div><span>Email</span></div>
+        <div>@Html.TextBoxFor(w => w.Users.Email)</div>
+        <div><span>Sexo </span></div>
+        <div>@Html.DropDownListFor(w => w.Users.Gender, new List<SelectListItem> { new SelectListItem{ Text = "M", Value = "true", Selected = true }, new SelectListItem{ Text = "F", Value = "false" } })</div>
+        <div><span>Data de Aniversário</span></div>
+        <div>@Html.TextBoxFor(m => m.Users.Birthday, "{0:dd/MM/yyyy}")</div>
+        <div><span>Telefone Residencial</span></div>
+        <div>@Html.TextBoxFor(m => m.Users.DDDHome) @Html.TextBoxFor(m => m.Users.HomePhone) </div>
+        <div class="editor-field">@Html.ActionLink("Mudar Senha", "ChangePassword")</div>
+        <div><input type="submit" class="button green small" value="Save" /></div>
+        <div>@Html.Partial("_Address", Model)</div>
+        <div>@Html.Partial("GoogleMap")</div>
+    </div>
+    }
+}
+
+<script>
+    if ($("#Users_Avatar").val() != '')
+        $("#fileImg").html('<img id="UploadImage" src="../content/uploads/' + $("#Users_Avatar").val() + '">').css("display", "block");
+</script>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,15 @@
+﻿
+
+@if (Request.IsAuthenticated)
+{
+    <li>Olá, @Html.ActionLink(User.Identity.Name, "Register", "Account", new { userId = Membership.GetUser().ProviderUserKey }, null)
+    </li>
+    <li>
+        @Html.ActionLink("LogOff", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "logoffLink" })
+    </li>
+}
+else
+{
+    <li>@Html.ActionLink("Cadastre-se", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li> 
+    <li>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+}

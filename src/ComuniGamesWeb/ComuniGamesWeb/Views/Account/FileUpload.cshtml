@@ -1,0 +1,39 @@
+﻿<script src="~/Scripts/jquery.fineuploader-3.1.js"></script>
+<link href="~/Content/FineUploader/fineuploader.css" rel="stylesheet" />
+
+
+<div id="thumbnail-fine-uploader">
+   
+
+</div>
+ <div id="fileImg" style="display:none">
+
+ </div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#thumbnail-fine-uploader').fineUploader({
+            request: {
+                endpoint: '/Account/UploadFile'
+            },
+            multiple: false,
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
+                sizeLimit: 92160000 // 50 kB = 50 * 1024 bytes
+            },
+            text: {
+                uploadButton: 'Upload'
+            }
+        }).on('complete', function (event, id, fileName, responseJSON) {
+            if (responseJSON.success) {
+                $("#fileImg").html('<img id="UploadImage" src="../content/uploads/' + responseJSON.fileName + "?" + Math.random() + '">').css("display", "block");
+
+                $("#Users_Avatar").val(responseJSON.fileName);
+            } 
+            else {
+                $(this).append(responseJSON.error);
+            }
+        });
+    });
+</script>

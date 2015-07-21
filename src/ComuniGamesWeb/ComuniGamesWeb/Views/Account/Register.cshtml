@@ -1,0 +1,121 @@
+﻿@model ComuniGamesWeb.ViewModels.AccountViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+<hgroup class="title">
+    
+    <h2>Nova Conta</h2>
+</hgroup>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nome: </label>
+            @Html.TextBoxFor(m => m.Users.Nome, new { @class = "form-control", @placeholder = "Entre com seu nome completo" })
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email: </label>
+            @*<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">*@
+            @Html.TextBoxFor(m => m.UserProfile.UserName, new { @class = "form-control", @placeholder = "Entre com o email" })
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+        </div>
+        @*<div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" id="exampleInputFile">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Check me out
+            </label>
+        </div>*@
+        <button type="submit" class="btn btn-default">Submit</button>
+
+
+        @*<div>
+            Nome: 
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Users.Name)
+
+        </div>
+        <div>
+            Sobrenome: 
+        <div>
+            @Html.TextBoxFor(m => m.Users.Lastname)
+        </div>
+        </div>
+        <div>
+            CPF:
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Users.CPF)
+
+        </div>
+        <div>
+            Data de Nascimento: 
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Users.Birthday, "{0:dd/MM/yyyy}")
+
+        </div>
+
+
+        <div>Telefone Casa: </div>
+        <div>
+            @Html.TextBoxFor(m => m.Users.DDDHome)
+            @Html.TextBoxFor(m => m.Users.HomePhone)
+        </div>
+        <div>Sexo: </div>
+        <div>
+            @Html.DropDownListFor(w => w.Users.Gender, new List<SelectListItem> { new SelectListItem{ Text = "M", Value = "true", Selected = true }, 
+                                                                                       new SelectListItem{ Text = "F", Value = "false" } 
+                                                                                })
+        </div>
+
+        <div>
+            E-mail: 
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Users.Email)
+        </div>
+        <div>
+            @if (!Request.IsAuthenticated)
+            {
+               
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+              
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            }
+            else
+            {
+                @Html.ActionLink("Mudar Senha", "ChangePassword")   
+            }
+        </div>*@
+    </div>
+    @*@Html.Partial("_Address", Model)*@
+}
+
+

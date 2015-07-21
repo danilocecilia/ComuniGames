@@ -1,0 +1,32 @@
+﻿<script src="~/Scripts/gmap3.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+
+<style>
+    .gmap3 {
+        margin: 20px auto;
+        border: 1px dashed #C0C0C0;
+        width: 600px;
+        height: 350px;
+    }
+</style>
+
+<script>
+    $(function () {
+        var address = "rua cananeia, 138, santo andre, sp";
+        $("#map_canvas").gmap3({
+            map: {
+                address: address,
+                options: {
+                    zoom: 16
+                }
+            },
+            marker: {
+                address: address   // address resolution got from cache from previous call
+            }
+        });
+
+    });
+</script>
+
+<div id="map_canvas" class="gmap3"></div>
+

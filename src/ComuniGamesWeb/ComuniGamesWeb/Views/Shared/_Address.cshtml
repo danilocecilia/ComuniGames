@@ -1,0 +1,22 @@
+﻿@model ComuniGamesWeb.ViewModels.AccountViewModel
+
+<script type="text/javascript" src="~/Scripts/site.js"></script>
+@Html.HiddenFor(w => w.Users.EnderecoId)
+@Html.HiddenFor(w => w.Users.Endereco.CidadeID)
+@Html.HiddenFor(w => w.Users.Endereco.EstadoID)
+
+<div>CEP</div>
+<div>@Html.TextBoxFor(w => w.Users.Endereco.CEP)</div>
+<div>Logradouro</div>
+<div>@Html.TextBoxFor(w => w.Users.Endereco.Logradouro)</div>
+<div>Número</div>
+<div>@Html.TextBoxFor(w => w.Users.Endereco.Numero)</div>
+<div>Complemento</div>
+<div>@Html.TextBoxFor(w => w.Users.Endereco.Complemento)</div>
+<div>Bairro</div>
+<div>@Html.TextBoxFor(w => w.Users.Endereco.Bairro)</div>
+
+
+<div>Estado</div>
+<div><select id="State" name="State" class="valid"></select></div><div>Cidade</div>
+<div><select id="City" name="City" class="valid"></select></div>

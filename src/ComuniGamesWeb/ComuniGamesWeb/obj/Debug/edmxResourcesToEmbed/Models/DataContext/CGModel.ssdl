@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ComuniGamesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ComuniGamesModelStoreContainer">
+    <EntitySet Name="Cidade" EntityType="ComuniGamesModel.Store.Cidade" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="Endereco" EntityType="ComuniGamesModel.Store.Endereco" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="Estado" EntityType="ComuniGamesModel.Store.Estado" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="UserProfile" EntityType="ComuniGamesModel.Store.UserProfile" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="Users" EntityType="ComuniGamesModel.Store.Users" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <AssociationSet Name="fk_cod_estado_cidade" Association="ComuniGamesModel.Store.fk_cod_estado_cidade">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Cidade" EntitySet="Cidade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Endereco_Cidade" Association="ComuniGamesModel.Store.FK_Endereco_Cidade">
+      <End Role="Cidade" EntitySet="Cidade" />
+      <End Role="Endereco" EntitySet="Endereco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Endereco_Estado" Association="ComuniGamesModel.Store.FK_Endereco_Estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Endereco" EntitySet="Endereco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Endereco" Association="ComuniGamesModel.Store.FK_Users_Endereco">
+      <End Role="Endereco" EntitySet="Endereco" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserProfile" Association="ComuniGamesModel.Store.FK_Users_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cidade">
+    <Key>
+      <PropertyRef Name="cod_cidade" />
+    </Key>
+    <Property Name="cod_cidade" Type="int" Nullable="false" />
+    <Property Name="cod_estado" Type="smallint" Nullable="false" />
+    <Property Name="nom_cidade" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Endereco">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Logradouro" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="Complemento" Type="varchar" MaxLength="50" />
+    <Property Name="CEP" Type="varchar" Nullable="false" MaxLength="9" />
+    <Property Name="CidadeID" Type="int" Nullable="false" />
+    <Property Name="EstadoID" Type="smallint" Nullable="false" />
+    <Property Name="FlgShowLocalization" Type="bit" Nullable="false" />
+    <Property Name="Bairro" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="cod_estado" />
+    </Key>
+    <Property Name="cod_estado" Type="smallint" Nullable="false" />
+    <Property Name="cod_pais" Type="smallint" Nullable="false" />
+    <Property Name="sgl_estado" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="nom_estado" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="56" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="EnderecoId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Lastname" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="CPF" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Avatar" Type="varchar" MaxLength="100" />
+    <Property Name="Birthday" Type="datetime" Nullable="false" />
+    <Property Name="DDDHome" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="HomePhone" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="DDDMobilePhone" Type="varchar" MaxLength="2" />
+    <Property Name="MobilePhone" Type="varchar" MaxLength="30" />
+    <Property Name="Skype" Type="varchar" MaxLength="100" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="PSN" Type="varchar" MaxLength="100" />
+    <Property Name="XboxLive" Type="varchar" MaxLength="100" />
+    <Property Name="LastModification" Type="datetime" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="WishlistNotification" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_cod_estado_cidade">
+    <End Role="Estado" Type="ComuniGamesModel.Store.Estado" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cidade" Type="ComuniGamesModel.Store.Cidade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="cod_estado" />
+      </Principal>
+      <Dependent Role="Cidade">
+        <PropertyRef Name="cod_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Endereco_Cidade">
+    <End Role="Cidade" Type="ComuniGamesModel.Store.Cidade" Multiplicity="1" />
+    <End Role="Endereco" Type="ComuniGamesModel.Store.Endereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cidade">
+        <PropertyRef Name="cod_cidade" />
+      </Principal>
+      <Dependent Role="Endereco">
+        <PropertyRef Name="CidadeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Endereco_Estado">
+    <End Role="Estado" Type="ComuniGamesModel.Store.Estado" Multiplicity="1" />
+    <End Role="Endereco" Type="ComuniGamesModel.Store.Endereco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="cod_estado" />
+      </Principal>
+      <Dependent Role="Endereco">
+        <PropertyRef Name="EstadoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Endereco">
+    <End Role="Endereco" Type="ComuniGamesModel.Store.Endereco" Multiplicity="1" />
+    <End Role="Users" Type="ComuniGamesModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Endereco">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="EnderecoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserProfile">
+    <End Role="UserProfile" Type="ComuniGamesModel.Store.UserProfile" Multiplicity="1" />
+    <End Role="Users" Type="ComuniGamesModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
